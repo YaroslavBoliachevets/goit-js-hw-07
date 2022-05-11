@@ -8,25 +8,15 @@ const divImgEl = document.querySelector('.gallery');
 const makeGalleryItemMurkup = galleryItems
   .map(({ preview, original, description }) => {
     return `
-	<a class="gallery__item" href="${original}">
-  <img class="gallery__image" src="${preview}" alt="${description}" />
-</a>
+  <li class="gallery__item">
+    <a  href="${original}">
+    <img class="gallery__image" src="${preview}" alt="${description}" />
+    </a>
+</li>
 	`;
   })
   .join('');
 
 divImgEl.insertAdjacentHTML('beforeend', makeGalleryItemMurkup);
 
-divImgEl.addEventListener('click', onGalleryClick);
-
-function onGalleryClick(e) {
-  e.preventDefault();
-
-  const isImg = e.target.classList.contains('gallery__image');
-
-  if (!isImg) {
-    return;
-  }
-
-  let gallery = new SimpleLightbox('.gallery a', { captionsData:'alt', captionDelay: 250 });
-}
+let gallery = new SimpleLightbox('.gallery a', { captionsData:'alt', captionDelay: 250 });
